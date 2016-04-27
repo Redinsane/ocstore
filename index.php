@@ -17,16 +17,18 @@ include 'init.php';
 
 </head>
 <body>
-<div><a href="add.php"><p><b>Add an ad on site</b></a></p>
+<div>
+	<a href="add.php"><p><b>Add an ad on site</b></a></p>
 </div>
 	<?php include 'pager.php'; ?>
 	<table class="table table-bordered table-hover table-stripped" width="100%">
 			<thead>
 				<tr>
-					<td style="color: blue"><b>ID</b></td>
-					<td style="color: blue"><b>Title</b></td>
-					<td style="color: blue"><b>Description</b></td>
-					<td style="color: blue"><b>Price</b></td>
+					<td style="color: #001a66"><b>ID</b></td>
+					<td style="color: #001a66"><b>Title</b></td>
+					<td style="color: #001a66"><b>Description</b></td>
+					<td style="color: #001a66"><b>Price</b></td>
+					<td style="color: #001a66"><b>Actions</b></td>
 				<tr>
 			</thead>
 
@@ -37,19 +39,23 @@ include 'init.php';
 				<td><?php echo $ad['title'] ?></td>
 				<td><?php echo $ad['description'] ?></td>
 				<td><?php echo $ad['price'] ?></td>
+				<td><a href="/remove.php?id=<?= $ad['id'] ?>">Remove</td>
 			</tr>
-			
 	<?php endforeach; ?>
 	</table>
 		<ul class="pagination">
 			<?php if ($page > 1): ?>
-				<li><a href="?page=<?php echo $page - 1; ?>&per-page=<?php echo $perPage; ?>">&laquo;</a></li>
+				<li><a href="?page=<?php echo $page - 1; ?>">&laquo;</a></li>
 			<?php endif; ?>
 			<?php for($x = 1; $x <= $pages; $x++): ?>
-				<li class="<?php if ($x === $page) echo 'active'; ?>"><a href="?page=<?php echo $x; ?>&per-page=<?php echo $perPage; ?>"<?php if($page === $x) {echo "class='selected'";} ?>><?php echo $x; ?></a></li>
+				<li class="<?php if ($x === $page) echo 'active'; ?>">
+					<a href="?page=<?php echo $x; ?>"<?php if($page === $x) {echo "class='selected'";} ?>>
+					    <?php echo $x; ?>
+					</a>
+				</li>
 			<?php endfor; ?>
 			<?php if ($page < $pages): ?>
-				<li><a href="?page=<?php echo $page + 1; ?>&per-page=<?php echo $perPage; ?>">&raquo;</a></li>
+				<li><a href="?page=<?php echo $page + 1; ?>">&raquo;</a></li>
 			<?php endif; ?>
 		</ul>
 		
